@@ -1,0 +1,25 @@
+{% extends 'base.html' %} 
+{% block content %}
+<p>Check out out flavors 🍕.</p>
+
+<ul>
+
+    {% for pizza in pizzaz %}
+
+    <li>
+        <a href="{% url 'pizzaz:toppings' pizzaz.id %}">{{ pizza }}</a>
+    </li>
+
+    {% empty %}
+    
+    <li>
+        <p>There are no pizzaz added yet 😢.</p>
+    </li>
+
+    {% endfor %}
+
+</ul>
+
+
+
+{% enblock content %}
