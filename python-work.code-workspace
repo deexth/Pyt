@@ -5,6 +5,15 @@
 		},
 		{
 			"path": "codewars"
+		},
+		{
+			"path": "A&A"
+		},
+		{
+			"path": "coursera"
+		},
+		{
+			"path": "front-end mentor"
 		}
 	],
 	"settings": {}
