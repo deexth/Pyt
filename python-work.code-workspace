@@ -5,6 +5,12 @@
 		},
 		{
 			"path": "codewars"
+		},
+		{
+			"path": "edx"
+		},
+		{
+			"path": "..\\..\\F-mentor"
 		}
 	],
 	"settings": {}
