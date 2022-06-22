@@ -44,6 +44,9 @@ form {
     padding: 14px 35px;
 }
 
-#amount, #rate_new, #result, #total_years {
+#amount,
+#rate_new,
+#result,
+#total_years {
     background-color: yellow;
 }
