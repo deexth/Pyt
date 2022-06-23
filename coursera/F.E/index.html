@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,14 +9,54 @@
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
-<body>
-    <h1>Simple Interest Calculator</h1>
 
-    Amount <input type="number" id="principal"> <br />
-    Rate <input type="number" id="rate"> <br />
-    No. of Years <input type="number" id="years"> <br />
-    Interest : <span id="result"></span><br>
+<body onload="slider_change()">
+    <main>
+        <div class="form">
+            <h1>Simple Interest Calculator</h1>
+            <form action="post">
+                <label for="amount">Amount</label>
+                <input type="text" name="amount" id="principal"> <br /><br />
+                <label for="interest">Interest Rate</label>
+                <input type="range" min="1.00" max="20.00" step="0.05" value="10.00" name="interest" id="slider"
+                    **default_value="50" onchange="new_value()"> <span id="rate">jj</span> <br /><br />
 
-    <button onclick="compute()">Compute</button>
+                <label for="years">No. of years</label>
+
+                <select name="years" id="years">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select> <br /><br />
+
+                <button onclick="compute()">Compute Interest</button>
+                <div class="hidden">
+                    <p>
+                        If you deposit <span id="amount">amount</span>, <br />
+                        at an interest rate of <span id="rate_new">rate</span>, <br />
+                        You will receive an amount of <span id="result">value</span>, <br />
+                        in the year <span id="total_years">year</span>
+                    </p>
+                </div>
+            </form>
+
+            <footer>
+                <p>&copy; Everyone Can Get Rich <br />
+                    This Calculator belongs to Heritier
+                </p>
+            </footer>
+
+        </div>
+
+    </main>
+
 </body>
+
 </html>

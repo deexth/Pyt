@@ -1,0 +1,5 @@
+license : https://github.com/deexth/github-final-project/blob/main/LICENSE
+readme: https://github.com/deexth/github-final-project/blob/main/README.md
+codeof: https://github.com/deexth/github-final-project/blob/main/CODE_OF_CONDUCT.md
+contrib: https://github.com/deexth/github-final-project/blob/main/CONTRIBUTING.md
+simi: https://github.com/deexth/github-final-project/blob/main/simple-interest.sh

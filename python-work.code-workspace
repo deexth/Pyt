@@ -7,6 +7,12 @@
 			"path": "codewars"
 		},
 		{
+<<<<<<< HEAD
+			"path": "edx"
+		},
+		{
+			"path": "..\\..\\F-mentor"
+=======
 			"path": "A&A"
 		},
 		{
@@ -14,6 +20,7 @@
 		},
 		{
 			"path": "front-end mentor"
+>>>>>>> f63509be2d4130477ee5e02e2524f2b89f7f5926
 		}
 	],
 	"settings": {}

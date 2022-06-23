@@ -1,4 +1,52 @@
-body {background-color:tan;}
-h1{color:green;}
+* {
+    box-sizing: border-box;
+}
 
+body {
+    background-color: black;
+}
 
+h1 {
+    color: grey;
+    font-weight: 900;
+    font-family: Tahoma;
+}
+
+.form {
+    margin: 10px;
+    padding: 25px;
+    border: none;
+    border-radius: 15px;
+    background-color: whitesmoke;
+    /* max-width: 100%; */
+    width: 34%;
+}
+
+.hidden {
+    display: none;
+}
+
+input,
+label,
+select {
+    float: left;
+}
+
+label {
+    width: 100px;
+    clear: left;
+    text-align: left;
+    padding-right: 10px;
+}
+
+form {
+    margin: 5px;
+    padding: 14px 35px;
+}
+
+#amount,
+#rate_new,
+#result,
+#total_years {
+    background-color: yellow;
+}
