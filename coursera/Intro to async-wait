@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@10.7.1/styles/default.min.css">
+  </head>
+  <body>
+    <img src="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-CD0220EN-SkillsNetwork/labs/Module2_Async_Callback/images/IDSNlogo.png" width="200" height="200">
+    <h2>An introduction to Async Await</h2>
+    <p>As you might have already learnt, Java Script is a single-threaded scripting language. That means the process can happen only sequentially and no two processes can happen simultaneously. This is a big deterrent to any language and JS solved this by introducing asynchronous programming through Promises. We have learnt about promises and seen some examples of the same. While Promises solved the issues with synchronous programming, nested <code>then</code> can compilcate the structure and readability of the code.</p>
+    <p>In ES 2017, Async/Await was introduced which addressed this issue and gave way to cleaner, readable code. We will understand the working of async/await in the light of the some examples we used for Promise, for better understanding. By awaiting a promise, we can process the result as and when the promise is fulfilled (or rejected).</p>
+    <p>In the following code sample, we have created a Promise with a callback where we handle reolve and reject.</p>
+    <pre><code class="hljs language-js"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>).default;
+
+<span class="hljs-keyword">const</span> connectToURL = <span class="hljs-function">(<span class="hljs-params">url</span>)=></span>{
+  <span class="hljs-keyword">const</span> req = axios.get(url);
+  <span class="hljs-built_in">console</span>.log(req);
+  req.then(<span class="hljs-function"><span class="hljs-params">resp</span> =></span> {
+      <span class="hljs-keyword">let</span> listOfWork = resp.data.work;
+      listOfWork.forEach(<span class="hljs-function">(<span class="hljs-params">work</span>)=></span>{
+        <span class="hljs-built_in">console</span>.log(work.titleAuth);
+      });
+    })
+  .catch(<span class="hljs-function"><span class="hljs-params">err</span> =></span> {
+      <span class="hljs-built_in">console</span>.log(err.toString())
+  });
+}
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Before connect URL"</span>)
+connectToURL(<span class="hljs-string">'https://reststop.randomhouse.com/resources/works/?expandLevel=1&#x26;search=Grisham'</span>);
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"After connect URL"</span>)
+
+</code></pre>
+    <p>We will see how the same is accomplished with async/await.</p>
+    <pre><code class="hljs language-js"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>).default;
+<span class="hljs-keyword">const</span> connectToURL = <span class="hljs-keyword">async</span>(url)=>{
+    <span class="hljs-keyword">const</span> outcome = axios.get(url);
+    <span class="hljs-keyword">let</span> listOfWork = (<span class="hljs-keyword">await</span> outcome).data.work;
+    listOfWork.forEach(<span class="hljs-function">(<span class="hljs-params">work</span>)=></span>{
+      <span class="hljs-built_in">console</span>.log(work.titleAuth);
+    });
+}
+
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Before connect URL"</span>)
+connectToURL(<span class="hljs-string">'https://reststop.randomhouse.com/resources/works/?expandLevel=1&#x26;search=Grisham'</span>).catch(<span class="hljs-function"><span class="hljs-params">err</span>=></span><span class="hljs-built_in">console</span>.log(err.toString()));
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"After connect URL"</span>)
+</code></pre>
+    <p>The best use of async/await can be realized when we have a scenario where some async methods have to happen in sequence. Taking the same example as above, let's first get a list of all books ids by an author and based on book ids, send request to get the details of each book. So, these two actions have to happen one after the other but asynchronously. These can be accomplished with or wothout async/await. But chaining actions is much cleaner with async await, as you can observe below. In actual situations, the nesting can be multiple level and rendering the code difficult to read and maintain. In such situations, we could use async/await.</p>
+    <p>The below code is done by nesting the second set of promises into the first.</p>
+    <pre><code class="hljs language-js"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>).default;
+
+<span class="hljs-comment">/*
+In the following code we try to get list of all book ids from remote url and then based on that make request about each of the 
+id. Finally print them all out. We are using axios get, which returns a promise. 
+*/</span>
+<span class="hljs-keyword">const</span> connectToURL = <span class="hljs-function">(<span class="hljs-params">url</span>)=></span>{
+  <span class="hljs-keyword">const</span> req = axios.get(url);
+  req.then(<span class="hljs-function"><span class="hljs-params">resp</span> =></span> {
+      <span class="hljs-keyword">let</span> listOfWork = resp.data.work;
+      <span class="hljs-keyword">return</span> listOfWork.map(<span class="hljs-function">(<span class="hljs-params">work</span>)=></span>{
+          <span class="hljs-keyword">return</span> work.workid
+      })
+    }).then(<span class="hljs-function">(<span class="hljs-params">workids</span>)=></span>{
+        <span class="hljs-keyword">let</span> promisesArr = [];
+        workids.forEach(<span class="hljs-function">(<span class="hljs-params">workid</span>)=></span>{
+            <span class="hljs-keyword">const</span> req = axios.get(<span class="hljs-string">"https://reststop.randomhouse.com/resources/works/"</span>+workid);
+            promisesArr.push(req);
+            req.then(<span class="hljs-function"><span class="hljs-params">resp</span>=></span>{
+                <span class="hljs-built_in">console</span>.log(resp.data.titleAuth);
+            })
+        });
+    })
+  .catch(<span class="hljs-function"><span class="hljs-params">err</span> =></span> {
+      <span class="hljs-built_in">console</span>.log(err.toString())
+  });
+}
+connectToURL(<span class="hljs-string">'https://reststop.randomhouse.com/resources/works/?expandLevel=1&#x26;search=Grisham'</span>);
+
+</code></pre>
+    <p>The same objective is attained using async/await.</p>
+    <pre><code class="hljs language-js"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>).default;
+
+<span class="hljs-comment">/*
+In the following code we try to get list of all book ids from remote url and then based on that make request about each of the 
+id. Finally print them all out. We are using axios get, which returns a promise. 
+*/</span>
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">connectToURL</span>(<span class="hljs-params">url</span>)</span>{
+    <span class="hljs-keyword">const</span> resp = <span class="hljs-keyword">await</span> axios.get(url);
+    <span class="hljs-keyword">let</span> listOfWork = resp.data.work;
+    <span class="hljs-keyword">let</span> workids = listOfWork.map(<span class="hljs-function">(<span class="hljs-params">work</span>)=></span>{
+          <span class="hljs-keyword">return</span> work.workid
+    });
+    workids.forEach(<span class="hljs-keyword">async</span> (workid)=>{
+            <span class="hljs-keyword">const</span> req = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">"https://reststop.randomhouse.com/resources/works/"</span>+workid);
+            <span class="hljs-built_in">console</span>.log(req.data.titleAuth);
+
+    });
+}
+connectToURL(<span class="hljs-string">'https://reststop.randomhouse.com/resources/works/?expandLevel=1&#x26;search=Grisham'</span>).catch(<span class="hljs-function"><span class="hljs-params">err</span> =></span> {
+    <span class="hljs-built_in">console</span>.log(err.toString())
+});
+
+</code></pre>
+    <p>You can only await a promise inside an async method. This is because <code>await</code> blocks the thread. This will defeat the primary purpose. So the sunction within which an <code>await</code> is used HAS TO BE async.</p>
+    <h2>Author(s)</h2>
+    <p><a href="https://www.linkedin.com/in/lavanya-sunderarajan-199a445?utm_medium=Exinfluencer&#x26;utm_source=Exinfluencer&#x26;utm_content=000026UJ&#x26;utm_term=10006555&#x26;utm_id=NA-SkillsNetwork-Channel-SkillsNetworkCoursesIBMDeveloperSkillsNetworkCD0220ENSkillsNetwork20363180-2022-01-01" target="_blank" rel="external">Lavanya</a></p>
+    <h2>Changelog</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Version</th>
+          <th>Changed by</th>
+          <th>Change Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2020-11-25</td>
+          <td>1.0</td>
+          <td>Lavanya</td>
+          <td>Created Lab for Asyn Await as a part of async callback programming</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <h2></h2>
+    <h3 align="center">© IBM Corporation 2020. All rights reserved.</h3>
+    <h3></h3>
+    <script>window.addEventListener('load', function() {
+snFaculty.inject();
+});</script>
+    <script src="https://skills-network-assets.s3.us.cloud-object-storage.appdomain.cloud/scripts/inject.43989f87.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@10.7.1/highlight.min.js"></script>
+    <script src="https://unpkg.com/highlightjs-badge@0.1.9/highlightjs-badge.min.js"></script>
+  </body>
+</html>
