@@ -10,17 +10,10 @@
 			"path": "edx"
 		},
 		{
-			"path": "..\\..\\F-mentor"
-		},
-		{
-			"path": "A&A"
-		},
-		{
 			"path": "coursera"
-		},
-		{
-			"path": "..\\..\\These"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "python-work"
+	}
 }
