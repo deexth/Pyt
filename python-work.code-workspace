@@ -11,9 +11,17 @@
 		},
 		{
 			"path": "coursera"
+		},
+		{
+			"path": "Algorithms in python"
 		}
 	],
 	"settings": {
 		"liveServer.settings.multiRootWorkspaceName": "python-work"
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-python.python"
+		]
 	}
 }

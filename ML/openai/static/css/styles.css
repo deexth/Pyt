@@ -1,0 +1,155 @@
+body {
+  background-color: #000;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  text-align: center;
+  padding: 20px;
+}
+
+header img {
+  max-width: 150px;
+  height: auto;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form-container {
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  padding: 50px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-container h2 {
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: #fff;
+}
+
+.form-container input[type="email"],
+.form-container input[type="password"] {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  color: #fff;
+  width: 100%;
+  font-size: 16px;
+}
+
+.form-container input[type="submit"] {
+  background-color: #007BFF;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  font-size: 16px;
+}
+
+.form-container input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.form-container p {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #aaa;
+}
+
+.form-container a {
+  color: #007BFF;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.form-container a:hover {
+  color: #0056b3;
+}
+
+.switch {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.switch input[type="checkbox"] {
+  display: none;
+}
+
+.switch label {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch label input[type="checkbox"] {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch label span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #aaa;
+  border-radius: 34px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.switch label span:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.switch input[type="checkbox"]:checked + label span {
+  background-color: #007BFF;
+}
+
+.switch input[type="checkbox"]:checked + label span:before {
+  transform: translateX(26px);
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+footer p {
+  font-size: 14px;
+  color: #aaa;
+}
