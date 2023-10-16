@@ -4,8 +4,13 @@
 {% block title %}Home{% endblock title %}
 
 {% block content %}
+{% if user.is_authenticated %}
+<h1>Welcome to our Chatbot {{ user.email }}</h1>
+<p>Your virtual assistant for all your questions.</p>
+{% else %}
 <h1>Welcome to our Chatbot</h1>
 <p>Your virtual assistant for all your questions.</p>
-
+<p><a href="#" class="cta-button">Explore</a></p>
+{% endif %}
 <a href="#" class="cta-button">Start Chatting</a>
 {% endblock content %}

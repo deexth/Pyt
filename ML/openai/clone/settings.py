@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     # Third party apps
     'django_filters',
     'corsheaders',
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
@@ -145,7 +147,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_DIRS = [BASE_DIR / "static"]  # new
-# STATIC_ROOT = BASE_DIR / "staticfiles"  # new
+STATIC_ROOT = BASE_DIR / "staticfiles"  # new
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"  # new
 
 # Default primary key field type
