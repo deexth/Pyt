@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@10.7.1/styles/default.min.css">
+  </head>
+  <body>
+    <h2>When you are done with all the changes in the project go through the below instructions to learn how to commit and push to GitHub.</h2>
+    <h2>Task 1 - Review changes to the repo</h2>
+    <p>To review the changes that have been made to the repo, run the following commands in the terminal:</p>
+    <pre><code class="hljs language-ebnf"><span class="hljs-attribute">   cd</span> [your repo name]
+<span class="hljs-attribute">   git status</span>
+</code></pre>
+    <p>The <code>git status</code> command will display all the changes you have made to this point, similar to the following image:</p>
+    <p>
+      <img src="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-CD0101EN-SkillsNetwork/labs/GitHubLabs/images/git-status-1.png" alt="">
+    </p>
+    <p>The changed files will be displayed. Choose the files which you want to push to the repository.</p>
+    <h2>Task 2 - Mark the changes for commit</h2>
+    <p>You now need to commit the changes you've made. Before you can do that, you need to add the new and revised files to the commit:</p>
+    <ol>
+      <li>Run the following commands to add the files to git tracking:</li>
+    </ol>
+    <pre><code class="hljs language-livecodeserver">   git <span class="hljs-built_in">add</span> [name <span class="hljs-keyword">of</span> revised <span class="hljs-built_in">file</span>]
+
+   git <span class="hljs-built_in">add</span> [name <span class="hljs-keyword">of</span> <span class="hljs-built_in">new</span> <span class="hljs-built_in">file</span>]
+</code></pre>
+    <p>
+      <img src="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-CD0101EN-SkillsNetwork/labs/GitHubLabs/images/git-add.png" alt="">
+    </p>
+    <ol start="2">
+      <li>
+        <p>After adding the files, run <code>git status</code> again. You will see output similar to that in the following image:</p>
+        <p>
+          <img src="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-CD0101EN-SkillsNetwork/labs/GitHubLabs/images/git-status-2.png" alt="">
+        </p>
+      </li>
+    </ol>
+    <h2>Task 3 - Commit the changes</h2>
+    <p>Because this is first time you're using git on Theia, you need to set your display name and email so you can commit the changes:</p>
+    <ol>
+      <li>Run the following commands, sustituting your email and display name:</li>
+    </ol>
+    <pre><code class="hljs language-verilog">git <span class="hljs-keyword">config</span> --<span class="hljs-keyword">global</span> user<span class="hljs-variable">.email</span> rsannareddy@gmail<span class="hljs-variable">.com</span>
+
+git <span class="hljs-keyword">config</span> --<span class="hljs-keyword">global</span> user<span class="hljs-variable">.name</span> <span class="hljs-string">"Ramesh Sannareddy"</span>
+</code></pre>
+    <p>
+      <img src="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-CD0101EN-SkillsNetwork/labs/GitHubLabs/images/git-config-global.png" alt="">
+    </p>
+    <p>You are now able to commit the changes you've made using git.</p>
+    <ol start="2">
+      <li>
+        <p>Run the following command to commit the changes. You will pass a commit message using the <code>-m</code> option.</p>
+        <p><code>git commit -m 'changes made from theia lab environment'</code></p>
+        <p>
+          <img src="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-CD0101EN-SkillsNetwork/labs/GitHubLabs/images/git-commit.png" alt="">
+        </p>
+      </li>
+    </ol>
+    <h2>Task 4 - Generate Personal Access Token</h2>
+    <ol>
+      <li>Verify your email address if it hasn’t been verified on Github.</li>
+      <li>In the upper-right corner of any page, click your profile photo, then click Settings.</li>
+    </ol>
+    <img src="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-CD0101EN-SkillsNetwork/labs/GitHubLabs/images/profile_settings.png" style="margin-left:30px;margin-top:10px;margin-bottom:10px;width:75%;border: solid 1px grey">
+    3. In the left sidebar, click Developer settings.
+    
+    <img src="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-CD0101EN-SkillsNetwork/labs/GitHubLabs/images/dev_settings.png" style="margin-left:30px;margin-top:10px;margin-bottom:10px;width:75%;border: solid 1px grey">
+    4. In the left sidebar, click Personal access tokens and click on `Generate Tokens`
+    
+    <img src="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-CD0101EN-SkillsNetwork/labs/GitHubLabs/images/PAT.png" style="margin-left:30px;margin-top:10px;margin-bottom:10px;width:75%;border: solid 1px grey">
+    5. Give your token a descriptive name. To give your token an expiration, select the Expiration drop-down menu, then click a default or use the calendar picker. Select the scopes, or permissions, you'd like to grant this token. To use your token to access repositories from the command line, select repo.
+    
+    <img src="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-CD0101EN-SkillsNetwork/labs/GitHubLabs/images/new_personal_token.png" style="margin-left:30px;margin-top:10px;margin-bottom:10px;width:75%;border: solid 1px grey">
+    6. Click Generate token and make a note of it.
+    
+    <img src="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-CD0101EN-SkillsNetwork/labs/GitHubLabs/images/generate_token.png" style="margin-left:30px;margin-top:10px;margin-bottom:10px;width:75%;border: solid 1px grey">
+    7. Make sure you copy the token and keep it safe. It is not visible to you again.
+    
+    <img src="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-CD0101EN-SkillsNetwork/labs/GitHubLabs/images/copy_token.png" style="margin-left:30px;margin-top:10px;margin-bottom:10px;width:75%;border: solid 1px grey">
+    <blockquote>
+      <p><strong>Treat your tokens like passwords and keep them a secret.</strong></p>
+    </blockquote>
+    <blockquote>
+      <p>Once you have a token, you can enter the Personal Access Token as password when performing Git operations.</p>
+    </blockquote>
+    <h2>Task 5 - Push the code to GitHub</h2>
+    <p>The git <code>push</code> command will enable you to sync all the changes made locally to the GitHub web repository.</p>
+    <pre><code class="hljs language-sql_more">  1. Run the following command <span class="hljs-keyword">with</span> your actual HTTPS <span class="hljs-keyword">link</span>:
+
+     <span class="hljs-string">`git push [HTTPS link]`</span>
+
+     You will be prompted <span class="hljs-keyword">by</span> git <span class="hljs-keyword">for</span> your username <span class="hljs-keyword">and</span> password.
+
+  <span class="hljs-number">2.</span> <span class="hljs-keyword">Type</span> your GitHub username <span class="hljs-keyword">and</span> <span class="hljs-keyword">for</span> the <span class="hljs-keyword">password</span>, enter the personal <span class="hljs-keyword">access</span> token you <span class="hljs-keyword">generated</span> <span class="hljs-keyword">in</span> the previous task. <span class="hljs-keyword">When</span> you <span class="hljs-keyword">are</span> <span class="hljs-keyword">authenticated</span>, <span class="hljs-keyword">all</span> committed changes <span class="hljs-keyword">are</span> synced <span class="hljs-keyword">with</span> your GitHub repository.
+</code></pre>
+    <p>You can now visit the GitHub repository page and check to ensure that the revised and newly added files are in place.</p>
+    <h1></h1>
+    <h2>Summary</h2>
+    <p>Congratulations! You should now know how to access git and run commands from the command line using the Theia lab environment.</p>
+    <p>In this lab, you have learned how to:</p>
+    <ul>
+      <li>Commit the changes</li>
+      <li>Push the updated files to GitHub</li>
+    </ul>
+    <p>We encourage you to make more changes to your files using the Theia environment to become familiar with git, GitHub, and running commands from command line.</p>
+    <p><strong>Author:</strong></p>
+    <p>Ramesh Sannareddy</p>
+    <p><strong>Other Contributors</strong></p>
+    <p>Anamika Agarwal</p>
+    <script>window.addEventListener('load', function() {
+snFaculty.inject();
+});</script>
+    <script src="https://skills-network-assets.s3.us.cloud-object-storage.appdomain.cloud/scripts/inject.43989f87.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@10.7.1/highlight.min.js"></script>
+    <script src="https://unpkg.com/highlightjs-badge@0.1.9/highlightjs-badge.min.js"></script>
+  </body>
+</html>

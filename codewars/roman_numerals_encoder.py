@@ -18,4 +18,7 @@ def solution(n):
         while n >= key:
             roman_string += roman_numerals[key]
             n -= key
-    return roman_string
+    # return roman_string
+    print(roman_string)
+
+solution(2010)

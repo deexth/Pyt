@@ -1,5 +1,5 @@
 #now using the if statement in the for loop
-requested_toppings = ['mushrooms','green peppers','extra cheese']
+requested_toppings = ['mushrooms','green peppers','extra cheese', 'green peppers']
 
 for requested_topping in requested_toppings:
     if requested_topping == 'green peppers':
